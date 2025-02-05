@@ -1,0 +1,17 @@
+{
+	"name": "com.aura.gamedev.auramz",
+	"displayName": "AuraMZ Template Game",
+	"version": "1.0",
+	"description": "AuraMZ Template Game",
+	"main": "index.html",
+	"chromium-args": "--force-color-profile=srgb",
+	"window": {
+		"title": "AuraMZ Template Game",
+		"width": 1280,
+		"height": 720,
+		"position": "center",
+		"icon": "icon/icon.png"
+	},
+	"author": "AuraGamedev",
+	"license": "CC BY-NC-SA 4.0"
+}

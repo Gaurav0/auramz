@@ -1,0 +1,7 @@
+#Copy this line into VS Code Find in files field, use regex search.
+#Replace 202 with Common Event #
+
+\n\s+"code": 117,\n\s+"indent": \d+,\n\s+"parameters": \[\n\s+202\n
+
+npx rpgmpacker@latest
+npx rpgmpacker --input ./AuraMZ_Template_Game/ --output ./build/Windows --rpgmaker ./tools/nwjs --hardlinks --exclude --debug --noempty --platforms "Windows"

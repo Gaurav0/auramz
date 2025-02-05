@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId 'com.aura.gamedev.auramz'
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
+    }
+
+    afterEvaluate {
+        println "Android Version Code: ${android.defaultConfig.versionCode}"
+        println "Android Version Name: ${android.defaultConfig.versionName}"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            universalApk true
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("auramz-template-game.keystore")
+            storePassword System.env.ANDROID_PASSWORD
+            keyAlias System.env.ANDROID_ALIAS
+            keyPassword System.env.ANDROID_PASSWORD
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    namespace 'com.aura.gamedev.auramz'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.play:core:1.10.3'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.webkit:webkit:1.7.0'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    implementation 'com.google.code.gson:gson:2.9.0'
+}

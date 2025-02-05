@@ -1,0 +1,10 @@
+build/
+tools/
+tmp/
+AuraMZ_Template_Game/**/*
+!AuraMZ_Template_Game/js/
+!AuraMZ_Template_Game/js/*
+!AuraMZ_Template_Game/js/**/*
+*.rmmzsave
+node_modules/
+.DS_Store

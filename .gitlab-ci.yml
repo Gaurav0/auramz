@@ -1,0 +1,28 @@
+image: beevelop/android-nodejs:v2023.10.1
+
+cache:
+  # Share one cache across all builds to avoid redownloading tools all the time
+  key: Tools
+  paths:
+    - tools
+    - node_modules
+    - .gradle/wrapper
+    - .gradle/caches
+
+before_script:
+   - export GRADLE_USER_HOME=`pwd`/.gradle
+   - lsb_release -a
+   - apt-get -y update || apt-get install ca-certificates
+   - apt-get -y update
+   - apt-get -y install p7zip-full curl unzip jq
+   - npm install -g json-minify
+
+stages:
+  - deploy
+    
+release-deploy-job:
+  only: 
+    - /^Release.*$/
+  stage: deploy
+  script:
+    - releng/deploy.sh -m Linux -b Release -d "itch"
